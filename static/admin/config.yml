@@ -1,0 +1,50 @@
+backend:
+  name: github
+  # change repo to your git repository url
+  branch: main
+  repo: maximocampo/emilianocruz
+  commit_messages:
+    create: "Create {{collection}} “{{slug}}”"
+    update: "Update {{collection}} “{{slug}}”"
+    delete: "Delete {{collection}} “{{slug}}”"
+    uploadMedia: "[skip ci] Upload “{{path}}”"
+    deleteMedia: "[skip ci] Delete “{{path}}”"
+
+local_backend: true
+media_folder: static/img
+public_folder: /img
+
+media_library:
+  name: cloudinary
+  config:
+    cloud_name: maximocampo
+    api_key: 959138754151886
+
+collections:
+  - name: "info"
+    label: "Info Posts"
+    folder: "_data/info"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "blog-post",
+        }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "1"
+    label: "1"
+    files:
+      - file: "_data/1/artiststatement.md"
+        label: "artist's statement"
+        name: "artist's statement"
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: "Publish Date", name: "date", widget: "datetime" }
+          - { label: "Body", name: "body", widget: "markdown" }
